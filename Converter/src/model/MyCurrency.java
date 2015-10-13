@@ -21,14 +21,15 @@ import view.MyView;
 
 public class MyCurrency {
 	private static NodeList list = null;
+
 	public static NodeList GetList(LocalDate date){
-		NodeList listOfCurrency = null;
+		NodeList listOfCurrency;
 		Document doc;
 		String URLStringBase = "http://www.nbrb.by/Services/XmlExRates.aspx?ondate=";
 		String URLString;
 		URL xmlUrl;
 		try {
-			//(мес€ц/день/год)
+			//(month/day/year)
 			URLString = URLStringBase;
 			URLString = URLString.concat(String.valueOf(date.getMonthValue()) + "/" + 
 						String.valueOf(date.getDayOfMonth()) + "/" + String.valueOf(date.getYear()));
@@ -46,8 +47,9 @@ public class MyCurrency {
 		list = listOfCurrency;
 		return listOfCurrency;
 	}
+
 	private static Document parse (InputStream is) {
-        Document documentTemp = null;
+        Document documentTemp;
         DocumentBuilderFactory docBuilderFactory;
         DocumentBuilder docBuilder;
         try {
@@ -64,6 +66,7 @@ public class MyCurrency {
         }
         return documentTemp;
     }
+
 	public static ObservableList<String> getListOfCurrencyRates(){
 		ObservableList<String> ListOfCurrencyRates = FXCollections.observableArrayList();
 		for (int i = 0; i < list.getLength(); i++){
@@ -71,8 +74,9 @@ public class MyCurrency {
 		}
 		return ListOfCurrencyRates;
 	}
+
 	public static ObservableList<String> getListOfCurrencyConverter(){
-		ObservableList<String> ListOfCurrencyRates = FXCollections.observableArrayList();
+		ObservableList<String> ListOfCurrencyRates;
 		ListOfCurrencyRates = getListOfCurrencyRates();
 		ListOfCurrencyRates.add("BYR");
 		return ListOfCurrencyRates;

@@ -43,7 +43,7 @@ public class MyView{
 	private static TextField textFieldLeft, textFieldRight;
 	
 	@SuppressWarnings("unchecked")
-	public static void init123(Parent root){
+	private static void init123(Parent root){
 
 		tabPane = (TabPane) root.getChildrenUnmodifiable().get(0);
 		tabRates = tabPane.getTabs().get(0);
@@ -73,7 +73,7 @@ public class MyView{
 	public static void start(Stage primaryStage){
 		Parent root = null;
 		try {		
-			root = (Parent)FXMLLoader.load(MyView.class.getResource("/application/Main.fxml"));
+			root = FXMLLoader.load(MyView.class.getResource("/application/Main.fxml"));
 		}
 		catch(Exception e) {
 			System.err.println("Error. File Main.fxml not found. Exception: " + e);
@@ -135,8 +135,8 @@ public class MyView{
 	}
 
 	public static void setItemsToComboBoxesR(ObservableList<String> ListOfCurrencyRates) {
-		for (int i = 0; i < comboBoxRates.length; i++) {
-			comboBoxRates[i].setItems(ListOfCurrencyRates);
+		for (ComboBox<String> comboBoxRate : comboBoxRates) {
+			comboBoxRate.setItems(ListOfCurrencyRates);
 		}
 	}
 
@@ -206,12 +206,11 @@ public class MyView{
 						break;
 					}
 				}
-		return;
 	}
 
 	public static void setLabelError() {
 		labelError.setWrapText(true);
-		labelError.setText("Server is unavailible or internet connection is closed.");
+		labelError.setText("Server is unavailiable or internet connection is closed.");
 	}
 
 	public static void setImageFromTo() {

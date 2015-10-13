@@ -9,6 +9,7 @@ import org.w3c.dom.NodeList;
 import view.MyView;
 
 public class MyConverter {
+		@SuppressWarnings("ResultOfMethodCallIgnored")
 		public static void updateTextFields(KeyEvent event, boolean isLeft, NodeList listOfCurrency){
 
 		int length = MyView.getLengthTFLeft(isLeft);
@@ -49,12 +50,12 @@ public class MyConverter {
 		for (int i = 0; i < listOfCurrency.getLength(); i++){
 			if(MyView.getTextTFLeft(isLeft) == null)
 				return;
-			if(MyView.getComboBoxLeftValue(isLeft) == "BYR")
+			if(MyView.getComboBoxLeftValue(isLeft).equals("BYR"))
 			{
 				rateLeft = 1.0;
 				leftFind = true;
 			}
-			if(MyView.getComboBoxRightValue(isLeft) == "BYR")
+			if(MyView.getComboBoxRightValue(isLeft).equals("BYR"))
 			{
 				rateRight = 1.0;
 				rightFind = true;

@@ -16,7 +16,7 @@ import javafx.application.Platform;
 
 import javax.imageio.ImageIO;
 
-public class MyTray {
+class MyTray {
 	private static SystemTray tray = null;
 	private static TrayIcon trayIcon = null;
 	
@@ -25,7 +25,7 @@ public class MyTray {
 		if (SystemTray.isSupported()) {
 			tray = SystemTray.getSystemTray();
 
-			Image image = null;
+			Image image;
 	        try {
 	            InputStream is = MyTray.class.getResourceAsStream("/icon16.png");
 	            if(is == null)
@@ -38,12 +38,10 @@ public class MyTray {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					if(e.getButton() == 1){
-						Platform.runLater(new Runnable() {
-						      @Override public void run() {
-						    	  destroyTrayIcon();
-						    	  MyStage.setIconifiedFalse();
-						      }
-						    });
+						Platform.runLater(() -> {
+                            destroyTrayIcon();
+                            MyStage.setIconifiedFalse();
+                        });
 					}
 				}
 				@Override
@@ -55,23 +53,12 @@ public class MyTray {
 				@Override
 				public void mouseReleased(MouseEvent e) {}
 			};
-			ActionListener listener1 = new ActionListener() {
-				@Override
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					Platform.runLater(new Runnable() {
-					      @Override public void run() {
-					    	  destroyTrayIcon();
-					    	  MyStage.setIconifiedFalse();
-					      }
-					    });
-				}
-			};
-			ActionListener listener2 = new ActionListener() {
-				@Override
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.exit(0);
-				}
-			};
+			ActionListener listener1 = e -> Platform.runLater(() -> {
+                destroyTrayIcon();
+                MyStage.setIconifiedFalse();
+            });
+
+			ActionListener listener2 = e -> System.exit(0);
 			PopupMenu popup = new PopupMenu();
 			MenuItem defaultItem1 = new MenuItem();
 			MenuItem defaultItem2 = new MenuItem();
@@ -85,7 +72,6 @@ public class MyTray {
 			popup.add(defaultItem2);
 			
 			trayIcon = new TrayIcon(image, "Currency", popup);
-			
 			trayIcon.addActionListener(listener1);
 			trayIcon.addActionListener(listener2);
 			trayIcon.addMouseListener(mListener);
