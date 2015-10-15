@@ -1,15 +1,11 @@
 package application;
 	
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
-import controller.MyController;
-import application.MyStage;
 
 public class Main extends Application {
 	@Override
@@ -21,20 +17,20 @@ public class Main extends Application {
 			
 			MyStage.init(primaryStage);
 			
-			primaryStage.setHeight(185);
+			primaryStage.setHeight(195);
 			primaryStage.setResizable(false);
 			primaryStage.setWidth(250);
 			primaryStage.setTitle("Currency");
 			primaryStage.initStyle(StageStyle.UTILITY);
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
+			/*primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
 				@Override
 				public void handle(WindowEvent event) {
 					event.consume();
 					MyController.Minimize();
 				}
-			});
+			});*/
 			
 
 		} catch(Exception e) {

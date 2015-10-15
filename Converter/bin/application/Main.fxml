@@ -1,23 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="175.0" prefWidth="250.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.MyController">
+<AnchorPane prefHeight="175.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MyController">
    <children>
       <TabPane prefHeight="175.0" prefWidth="250.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Rates                        ">
             <content>
-              <AnchorPane maxWidth="250.0" minHeight="146.0" minWidth="250.0" prefHeight="175.0" prefWidth="250.0" />
+              <AnchorPane maxWidth="250.0" minHeight="146.0" minWidth="250.0" prefHeight="175.0" prefWidth="250.0">
+                     <children>
+                        <ComboBox fx:id="comboBox1" layoutX="14.0" layoutY="40.0" onHiding="#comboBox1Hiding" prefHeight="25.0" prefWidth="110.0" />
+                        <Label fx:id="label1" layoutX="173.0" layoutY="44.0" />
+                        <Label fx:id="label2" layoutX="173.0" layoutY="69.0" />
+                        <Label fx:id="label3" layoutX="173.0" layoutY="94.0" />
+                        <Label fx:id="label4" layoutX="173.0" layoutY="119.0" />
+                        <ComboBox fx:id="comboBox2" layoutX="14.0" layoutY="65.0" onHiding="#comboBox2Hiding" prefHeight="25.0" prefWidth="110.0" />
+                        <ComboBox fx:id="comboBox3" layoutX="14.0" layoutY="90.0" onHiding="#comboBox3Hiding" prefWidth="110.0" />
+                        <ComboBox fx:id="comboBox4" layoutX="14.0" layoutY="115.0" onHiding="#comboBox4Hiding" prefWidth="110.0" />
+                        <DatePicker fx:id="date" editable="false" layoutX="14.0" layoutY="7.0" onHiding="#dateHiding" />
+                        <Label fx:id="labelError" layoutX="14.0" layoutY="44.0" prefHeight="36.0" prefWidth="215.0" wrapText="true" />
+                        <Button fx:id="updateButton" layoutX="99.0" layoutY="95.0" mnemonicParsing="false" onAction="#updateButtonAction" text="Update" />
+                     </children></AnchorPane>
             </content>
           </Tab>
           <Tab text="               Converter">
             <content>
-              <AnchorPane maxWidth="250.0" minHeight="0.0" minWidth="250.0" prefHeight="175.0" prefWidth="250.0" />
+              <AnchorPane fx:id="converterPane" maxWidth="250.0" minHeight="0.0" minWidth="250.0" onKeyReleased="#keyReleased" prefHeight="175.0" prefWidth="250.0">
+                     <children>
+                        <ComboBox fx:id="comboBoxLeft" layoutX="14.0" layoutY="31.0" onHiding="#comboBox1Hiding" prefHeight="25.0" prefWidth="95.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="141.0" />
+                        <ComboBox fx:id="comboBoxRight" layoutX="141.0" layoutY="31.0" onHiding="#comboBox1Hiding" prefHeight="25.0" prefWidth="95.0" AnchorPane.leftAnchor="141.0" AnchorPane.rightAnchor="14.0" />
+                        <TextField fx:id="textFieldLeft" editable="false" layoutX="14.0" layoutY="75.0" prefHeight="25.0" prefWidth="95.0" />
+                        <TextField fx:id="textFieldRight" editable="false" layoutX="141.0" layoutY="75.0" prefHeight="25.0" prefWidth="95.0" />
+                        <ImageView fx:id="imageFromTo" fitHeight="25.0" fitWidth="32.0" layoutX="109.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>

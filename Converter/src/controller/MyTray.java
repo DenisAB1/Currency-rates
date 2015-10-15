@@ -20,22 +20,10 @@ public class MyTray {
 
 		if (SystemTray.isSupported()) {
 			tray = SystemTray.getSystemTray();
+						
+			Image image = Toolkit.getDefaultToolkit().getImage("src/icon16.png");
 			
-			Image image = Toolkit.getDefaultToolkit().getImage("D:/valve16.jpg");
-
 			ActionListener listener1 = new ActionListener() {
-				@Override
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.exit(0);
-				}
-			};
-			PopupMenu popup = new PopupMenu();
-			MenuItem defaultItem1 = new MenuItem();
-			defaultItem1.addActionListener(listener1);
-			defaultItem1.setLabel("Exit");
-			popup.add(defaultItem1);
-			
-			ActionListener listener2 = new ActionListener() {
 				@Override
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					Platform.runLater(new Runnable() {
@@ -45,10 +33,23 @@ public class MyTray {
 					      }
 					    });
 				}
+				
+			};
+			PopupMenu popup = new PopupMenu();
+			MenuItem defaultItem1 = new MenuItem();
+			defaultItem1.addActionListener(listener1);
+			defaultItem1.setLabel("Open");
+			popup.add(defaultItem1);
+			
+			ActionListener listener2 = new ActionListener() {
+				@Override
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					System.exit(0);
+				}
 			};
 			MenuItem defaultItem2 = new MenuItem();
 			defaultItem2.addActionListener(listener2);
-			defaultItem2.setLabel("Open");
+			defaultItem2.setLabel("Exit");
 			popup.addSeparator();
 			popup.add(defaultItem2);
 			
@@ -64,11 +65,11 @@ public class MyTray {
 		}else{
 			System.exit(0);
 		}
+		return;
 	}
 	
-	public static void destroyTrayIcon(){
+	private static void destroyTrayIcon(){
 		tray.remove(trayIcon);
-
-		
+		return;
 	}
 }
