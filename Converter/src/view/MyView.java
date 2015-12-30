@@ -88,7 +88,7 @@ public class MyView{
 			System.err.println("Error. File application.css not found. Exception: " + e);
 		}	
 			MyStage.init(primaryStage);
-			
+			//some changes
 			primaryStage.setHeight(195);
 			primaryStage.setResizable(false);
 			primaryStage.setWidth(250);
